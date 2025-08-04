@@ -1,5 +1,7 @@
 Opensource MERN stack CRUD operations 
 
+"I have added images to the images/ folder. Please open the folder to view them."
+
 **Containerized the source code with docker.**
 
 Docker Containerization
