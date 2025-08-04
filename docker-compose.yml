@@ -8,8 +8,7 @@ services:
       - "27017:27017"
 
   api:
-    build: .
-    image: mern-crud
+    image: pavan1309/mern-app
     container_name: api
     working_dir: /app
     command: nodemon server.js
@@ -24,7 +23,7 @@ services:
       - db
 
   web:
-    image: mern-crud
+    image: pavan1309/mern-app
     container_name: web
     working_dir: /app
     command: npm start --prefix react-src
