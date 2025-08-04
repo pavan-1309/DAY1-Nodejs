@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  db:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+
+  api:
+    build: .
+    image: mern-crud
+    container_name: api
+    working_dir: /app
+    command: nodemon server.js
+    ports:
+      - "3000:3000"
+    environment:
+      - DB=mongodb://db/mern-crud
+      - CORS=1
+      - DEBUG=express:*
+   
+    depends_on:
+      - db
+
+  web:
+    image: mern-crud
+    container_name: web
+    working_dir: /app
+    command: npm start --prefix react-src
+    ports:
+      - "4200:4200"
+    environment:
+      - REACT_APP_API_URL=http://localhost:3000
+      - NODE_OPTIONS=--openssl-legacy-provider
+  
+    depends_on:
+      - api
